@@ -1,0 +1,74 @@
+<header class="bg-gray-800 text-white shadow-md">
+  <div class="max-w-7xl mx-auto px-6 flex justify-between items-center h-16">
+
+    <!-- Logo -->
+    <div class="text-2xl font-bold cursor-pointer"><a routerLink="">BICC</a> </div>
+
+    <!-- Menu Desktop -->
+    <nav class="hidden md:flex space-x-6">
+      <!-- Invité -->
+      <a *ngIf="!isCustomerLoggedIn && !isAdminLoggedIn" routerLink="/order" class="hover:text-yellow-400 transition">Suivi Commande</a>
+      <a *ngIf="!isCustomerLoggedIn && !isAdminLoggedIn" routerLink="/signup" class="hover:text-yellow-400 transition">S'inscrire</a>
+      <a *ngIf="!isCustomerLoggedIn && !isAdminLoggedIn" routerLink="/login" class="hover:text-yellow-400 transition">Connexion</a>
+
+      <!-- Client -->
+      <a *ngIf="isCustomerLoggedIn" routerLink="/customer/dashboard" class="hover:text-yellow-400 transition">Tableau de bord</a>
+      <a *ngIf="isCustomerLoggedIn" routerLink="/customer/cart" class="hover:text-yellow-400 transition">Panier</a>
+      <a *ngIf="isCustomerLoggedIn" routerLink="/customer/my_orders" class="hover:text-yellow-400 transition">Mes commandes</a>
+      <a *ngIf="isCustomerLoggedIn" routerLink="/customer/wishlist" class="hover:text-yellow-400 transition">Favoris</a>
+      <a *ngIf="isCustomerLoggedIn" routerLink="/customer/profile" class="hover:text-yellow-400 transition">Profil</a>
+      <button *ngIf="isCustomerLoggedIn" (click)="logout()" class="hover:text-yellow-400 transition">Déconnexion</button>
+
+      <!-- Admin -->
+      <a *ngIf="isAdminLoggedIn" routerLink="/admin/dashboard" class="hover:text-yellow-400 transition">Tableau de bord</a>
+      <a *ngIf="isAdminLoggedIn" routerLink="/admin/analytics" class="hover:text-yellow-400 transition">Statistiques</a>
+      <a *ngIf="isAdminLoggedIn" routerLink="/admin/category" class="hover:text-yellow-400 transition">Catégories</a>
+      <a *ngIf="isAdminLoggedIn" routerLink="/admin/product" class="hover:text-yellow-400 transition">Produits</a>
+      <a *ngIf="isAdminLoggedIn" routerLink="/admin/orders" class="hover:text-yellow-400 transition">Commandes</a>
+      <a *ngIf="isAdminLoggedIn" routerLink="/admin/post-coupon" class="hover:text-yellow-400 transition">Créer Coupon</a>
+      <a *ngIf="isAdminLoggedIn" routerLink="/admin/coupons" class="hover:text-yellow-400 transition">Coupons</a>
+      <button *ngIf="isAdminLoggedIn" (click)="logout()" class="hover:text-yellow-400 transition">Déconnexion</button>
+    </nav>
+
+    <!-- Mobile Menu Button -->
+    <div class="md:hidden">
+      <button (click)="toggleMenu()" class="focus:outline-none">
+        <svg *ngIf="!isOpen" class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                d="M4 6h16M4 12h16M4 18h16"></path>
+        </svg>
+        <svg *ngIf="isOpen" class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                d="M6 18L18 6M6 6l12 12"></path>
+        </svg>
+      </button>
+    </div>
+
+  </div>
+
+  <!-- Mobile Menu -->
+  <div *ngIf="isOpen" class="md:hidden bg-gray-700 px-6 py-4 space-y-2">
+    <!-- Invité -->
+    <a *ngIf="!isCustomerLoggedIn && !isAdminLoggedIn" routerLink="/order" class="block hover:text-yellow-400 transition">Suivi Commande</a>
+    <a *ngIf="!isCustomerLoggedIn && !isAdminLoggedIn" routerLink="/signup" class="block hover:text-yellow-400 transition">S'inscrire</a>
+    <a *ngIf="!isCustomerLoggedIn && !isAdminLoggedIn" routerLink="/login" class="block hover:text-yellow-400 transition">Connexion</a>
+
+    <!-- Client -->
+    <a *ngIf="isCustomerLoggedIn" routerLink="/customer/dashboard" class="block hover:text-yellow-400 transition">Tableau de bord</a>
+    <a *ngIf="isCustomerLoggedIn" routerLink="/customer/cart" class="block hover:text-yellow-400 transition">Panier</a>
+    <a *ngIf="isCustomerLoggedIn" routerLink="/customer/my_orders" class="block hover:text-yellow-400 transition">Mes commandes</a>
+    <a *ngIf="isCustomerLoggedIn" routerLink="/customer/wishlist" class="block hover:text-yellow-400 transition">Favoris</a>
+    <a *ngIf="isCustomerLoggedIn" routerLink="/customer/profile" class="block hover:text-yellow-400 transition">Profil</a>
+    <button *ngIf="isCustomerLoggedIn" (click)="logout()" class="block hover:text-yellow-400 transition">Déconnexion</button>
+
+    <!-- Admin -->
+    <a *ngIf="isAdminLoggedIn" routerLink="/admin/dashboard" class="block hover:text-yellow-400 transition">Tableau de bord</a>
+    <a *ngIf="isAdminLoggedIn" routerLink="/admin/analytics" class="block hover:text-yellow-400 transition">Statistiques</a>
+    <a *ngIf="isAdminLoggedIn" routerLink="/admin/category" class="block hover:text-yellow-400 transition">Catégories</a>
+    <a *ngIf="isAdminLoggedIn" routerLink="/admin/product" class="block hover:text-yellow-400 transition">Produits</a>
+    <a *ngIf="isAdminLoggedIn" routerLink="/admin/orders" class="block hover:text-yellow-400 transition">Commandes</a>
+    <a *ngIf="isAdminLoggedIn" routerLink="/admin/post-coupon" class="block hover:text-yellow-400 transition">Créer Coupon</a>
+    <a *ngIf="isAdminLoggedIn" routerLink="/admin/coupons" class="block hover:text-yellow-400 transition">Coupons</a>
+    <button *ngIf="isAdminLoggedIn" (click)="logout()" class="block hover:text-yellow-400 transition">Déconnexion</button>
+  </div>
+</header>

@@ -16,6 +16,7 @@ import { ViewProductDetailComponent } from './components/view-product-detail/vie
 import { ViewWishlistComponent } from './components/view-wishlist/view-wishlist.component';
 
 
+
 @NgModule({
   declarations: [
     CustomerComponent,

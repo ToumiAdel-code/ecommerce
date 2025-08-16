@@ -13,13 +13,19 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
 import { TrackOrderComponent } from './track-order/track-order.component';
+import { FooterComponent } from './customer/components/components/footer/footer.component';
+import { HeaderComponent } from './customer/components/components/header/header.component';
+import { HomeComponent } from './customer/components/home/home.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
     SignupComponent,
-    TrackOrderComponent
+    FooterComponent,
+    HeaderComponent,
+    TrackOrderComponent,
+    HomeComponent
   ],
   imports: [
     MatFormFieldModule,

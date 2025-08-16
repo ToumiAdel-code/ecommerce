@@ -1,51 +1,23 @@
-.container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
+/* Fade in texte */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(-10px); }
+  to { opacity: 1; transform: translateY(0); }
 }
+.animate-fadeIn { animation: fadeIn 0.8s ease forwards; }
+.delay-200 { animation-delay: 0.2s; }
 
-mat-card {
-    max-width: 500px;
-    width: 100%;
-    padding: 20px;
-
-    @media screen and (max-width : 500px) {
-        max-width: 90&;
-    }
+/* Bubbles animation */
+.bubble {
+  fill: rgba(255,255,255,0.3);
+  animation: float 6s infinite ease-in-out;
 }
+.bubble:nth-child(2) { animation-duration: 7s; }
+.bubble:nth-child(3) { animation-duration: 5s; }
+.bubble:nth-child(4) { animation-duration: 8s; }
+.bubble:nth-child(5) { animation-duration: 6s; }
 
-max-card-title {
-    text-align: center;
-    font-size: 24px;
-    margin-bottom: 20px;
-}
-
-form {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-
-mat-form-field {
-    width: 100%;
-    margin-bottom: 20px;
-}
-
-button {
-    width: 100%;
-}
-
-@media screen and (max-width:500px) {
-    mat-card-title {
-        font-size: 20px;
-    }
-
-    mat-form-field {
-        margin-bottom: 10px;
-    }
-}
-
-.error-snackbar {
-    background-color: #f44336 !important;
+@keyframes float {
+  0% { transform: translateY(0) translateX(0); opacity: 0.3; }
+  50% { transform: translateY(-50px) translateX(20px); opacity: 0.5; }
+  100% { transform: translateY(-100px) translateX(0); opacity: 0.3; }
 }

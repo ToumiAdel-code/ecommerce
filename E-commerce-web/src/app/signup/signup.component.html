@@ -1,53 +1,70 @@
-<div class="container">
-    <mat-card>
-        <mat-card-title>Sign Up!</mat-card-title>
-        <mat-card-content>
-            <form [formGroup]="signupForm">
-                <mat-form-field appearance="outline">
-                    <mat-label>Name</mat-label>
-                    <input matInput formControlName="name" placeholder="Name" required>
-                    <mat-error *ngIf="signupForm.get('name')?.invalid && signupForm.get('name')?.touched">
-                        Please Enter A Valid Name.
-                    </mat-error>
-                </mat-form-field>
+<div class="min-h-screen flex items-center justify-center p-4">
 
-                <mat-form-field appearance="outline">
-                    <mat-label>Email</mat-label>
-                    <input matInput formControlName="email" placeholder="email" required>
-                    <mat-error *ngIf="signupForm.get('email')?.invalid && signupForm.get('email')?.touched">
-                        Please Enter A Valid Email.
-                    </mat-error>
-                </mat-form-field>
+  <!-- Formulaire centré -->
+  <div class="w-full max-w-md p-8 bg-white rounded-3xl shadow-2xl">
 
-                <mat-form-field appearance="outline">
-                    <mat-label>Password</mat-label>
-                    <input matInput type="{{ hidePassword ? 'password' : 'text'}}" formControlName="password" placeholder="password" required>
+    <h2 class="text-3xl font-bold text-[#4F46E5] mb-8 text-center animate-slideInDown">Créer un compte</h2>
 
-                    <button mat-icon-button matSuffix (click) = "togglePasswordVisibility()">
-                        <mat-icon>{{ hidePassword ? 'visibility_off' : 'visibility'}}</mat-icon>
-                    </button>
+    <form [formGroup]="signupForm" (ngSubmit)="onSubmit()" class="space-y-5">
 
-                    <mat-error *ngIf="signupForm.get('password')?.invalid && signupForm.get('password')?.touched">
-                        Please Enter A Valid password.
-                    </mat-error>
-                </mat-form-field>
+      <!-- Nom -->
+      <div class="flex flex-col">
+        <label class="mb-1 text-gray-700 font-medium">Nom</label>
+        <input formControlName="name" type="text" placeholder="Entrez votre nom"
+               class="border border-gray-300 rounded-xl px-4 py-3 focus:ring-2 focus:ring-[#4F46E5] focus:outline-none transition shadow-sm hover:shadow-md"/>
+        <span *ngIf="signupForm.get('name')?.invalid && signupForm.get('name')?.touched" class="text-red-500 text-sm mt-1">
+          Veuillez entrer un nom valide.
+        </span>
+      </div>
 
-                <mat-form-field appearance="outline">
-                    <mat-label>Confirm Password</mat-label>
-                    <input matInput type="{{ hidePassword ? 'password' : 'text'}}" formControlName="confirmPassword" placeholder="password" required>
+      <!-- Email -->
+      <div class="flex flex-col">
+        <label class="mb-1 text-gray-700 font-medium">E-mail</label>
+        <input formControlName="email" type="email" placeholder="Entrez votre e-mail"
+               class="border border-gray-300 rounded-xl px-4 py-3 focus:ring-2 focus:ring-[#4F46E5] focus:outline-none transition shadow-sm hover:shadow-md"/>
+        <span *ngIf="signupForm.get('email')?.invalid && signupForm.get('email')?.touched" class="text-red-500 text-sm mt-1">
+          Veuillez entrer un e-mail valide.
+        </span>
+      </div>
 
-                    <button mat-icon-button matSuffix (click) = "togglePasswordVisibility()">
-                        <mat-icon>{{ hidePassword ? 'visibility_off' : 'visibility'}}</mat-icon>
-                    </button>
+      <!-- Password -->
+      <div class="flex flex-col relative">
+        <label class="mb-1 text-gray-700 font-medium">Mot de passe</label>
+        <input [type]="hidePassword ? 'password' : 'text'" formControlName="password" placeholder="Entrez votre mot de passe"
+               class="border border-gray-300 rounded-xl px-4 py-3 focus:ring-2 focus:ring-[#4F46E5] focus:outline-none transition shadow-sm w-full"/>
+        <button type="button" (click)="togglePasswordVisibility()"
+                class="absolute right-3 top-11 text-gray-500 hover:text-gray-700 transition-colors">
+          <mat-icon>{{ hidePassword ? 'visibility_off' : 'visibility'}}</mat-icon>
+        </button>
+        <span *ngIf="signupForm.get('password')?.invalid && signupForm.get('password')?.touched" class="text-red-500 text-sm mt-1">
+          Veuillez entrer un mot de passe.
+        </span>
+      </div>
 
-                    <mat-error *ngIf="signupForm.get('confirmPassword')?.invalid && signupForm.get('confirmPassword')?.touched">
-                        Please Enter A Valid password.
-                    </mat-error>
-                </mat-form-field>
+      <!-- Confirm Password -->
+      <div class="flex flex-col relative">
+        <label class="mb-1 text-gray-700 font-medium">Confirmer le mot de passe</label>
+        <input [type]="hidePassword ? 'password' : 'text'" formControlName="confirmPassword" placeholder="Confirmez votre mot de passe"
+               class="border border-gray-300 rounded-xl px-4 py-3 focus:ring-2 focus:ring-[#4F46E5] focus:outline-none transition shadow-sm w-full"/>
+        <button type="button" (click)="togglePasswordVisibility()"
+                class="absolute right-3 top-11 text-gray-500 hover:text-gray-700 transition-colors">
+          <mat-icon>{{ hidePassword ? 'visibility_off' : 'visibility'}}</mat-icon>
+        </button>
+        <span *ngIf="signupForm.get('confirmPassword')?.invalid && signupForm.get('confirmPassword')?.touched" class="text-red-500 text-sm mt-1">
+          Les mots de passe ne correspondent pas.
+        </span>
+      </div>
 
-                <button mat-raised-button color="primary" type="submit" [disabled]="signupForm.invalid" (click)="onSubmit()">Sign Up!</button>
+      <!-- Bouton -->
+      <button type="submit" [disabled]="signupForm.invalid"
+              class="w-full py-3 text-white rounded-2xl font-semibold shadow-lg hover:shadow-2xl transform hover:-translate-y-1 transition-all duration-300 bg-[#4F46E5] hover:bg-[#6366F1]">
+        S'inscrire
+      </button>
+    </form>
 
-            </form>
-        </mat-card-content>
-    </mat-card>
+    <p class="text-center text-gray-700 mt-6">
+      Vous avez déjà un compte ?
+      <a routerLink="/login" class="text-[#4F46E5] font-medium hover:underline">Connexion</a>
+    </p>
+  </div>
 </div>

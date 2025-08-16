@@ -1,0 +1,62 @@
+<!-- Hero Banner -->
+<section class="hero" [style.backgroundImage]="'url(' + heroImage + ')'">
+  <div class="hero-content">
+    <h1>Découvrez nos produits exclusifs</h1>
+    <p>Qualité et offres exceptionnelles pour vous</p>
+    <button routerLink="/customer/products">Voir les produits</button>
+  </div>
+</section>
+
+<!-- Top Produits -->
+<section class="section top-products">
+  <h2>Top Produits</h2>
+  <div class="product-grid">
+    <div class="product-card" *ngFor="let product of topProducts">
+      <div class="product-image">
+        <img [src]="product.processedImg" alt="{{product.name}}">
+        <span class="badge new">Nouveau</span>
+      </div>
+      <div class="product-info">
+        <h3 routerLink="/customer/product/{{product.id}}">{{product.name}}</h3>
+        <p class="price">$ {{product.price}}</p>
+        <button mat-raised-button color="primary" (click)="addToCart(product.id)">Ajouter au panier</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Meilleurs Ventes -->
+<section class="section best-sellers">
+  <h2>Meilleurs Ventes</h2>
+  <div class="product-grid">
+    <div class="product-card" *ngFor="let product of bestSellers">
+      <div class="product-image">
+        <img [src]="product.processedImg" alt="{{product.name}}">
+        <span class="badge promo">Promo</span>
+      </div>
+      <div class="product-info">
+        <h3 routerLink="/customer/product/{{product.id}}">{{product.name}}</h3>
+        <p class="price">$ {{product.price}}</p>
+        <button mat-raised-button color="primary" (click)="addToCart(product.id)">Ajouter au panier</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Promotions / Banners -->
+<section class="section banners">
+  <div class="banner" *ngFor="let cat of categories">
+    <img [src]="'https://source.unsplash.com/400x200/?' + cat" alt="{{cat}}">
+    <div class="banner-text">{{cat}}</div>
+  </div>
+</section>
+
+<!-- Newsletter -->
+<section class="section newsletter">
+  <h2>Inscrivez-vous à notre newsletter</h2>
+  <p>Recevez les dernières offres et nouveautés directement dans votre boîte mail</p>
+  <form [formGroup]="newsletterForm" (ngSubmit)="subscribeNewsletter()">
+    <input type="email" formControlName="email" placeholder="Votre email">
+    <button type="submit" [disabled]="newsletterForm.invalid">S'inscrire</button>
+  </form>
+</section>
