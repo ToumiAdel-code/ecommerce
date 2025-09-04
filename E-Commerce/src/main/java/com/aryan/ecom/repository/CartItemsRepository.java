@@ -1,5 +1,6 @@
 package com.aryan.ecom.repository;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -9,7 +10,8 @@ import com.aryan.ecom.model.CartItems;
 
 @Repository
 public interface CartItemsRepository extends JpaRepository<CartItems, Long>{
-	
-	Optional<CartItems> findByProductIdAndOrderIdAndUserId(Long productId,Long orderId,Long userId);
+
+	Optional<CartItems> findByProductIdAndOrderIdAndUserId(Long productId, Long orderId, Long userId);
+	List<CartItems> findAllByOrderId(Long orderId);
 
 }

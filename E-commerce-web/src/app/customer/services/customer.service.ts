@@ -29,7 +29,7 @@ export class CustomerService {
     });
   }
 
-  addToCart(productId: any): Observable<any> {
+ addToCart(productId: any): Observable<any> {
     const cartDto = {
       productId: productId,
       userId: UserStorageService.getUserId()
@@ -38,6 +38,7 @@ export class CustomerService {
       headers: this.createAuthorizationHeader(),
     });
   }
+
 
   increaseProductQuantity(productId: any): Observable<any> {
     const cartDto = {
@@ -117,6 +118,13 @@ export class CustomerService {
       headers: this.createAuthorizationHeader(),
     })
   }
+
+  getSimilarProducts(categoryId: number): Observable<any[]> {
+  return this.http.get<any[]>(BASIC_URL + `api/customer/products/similar/${categoryId}`, {
+    headers: this.createAuthorizationHeader()
+  });
+  }
+
 
   private createAuthorizationHeader(): HttpHeaders {
     return new HttpHeaders().set(

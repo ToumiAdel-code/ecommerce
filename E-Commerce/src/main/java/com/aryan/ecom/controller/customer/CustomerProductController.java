@@ -48,4 +48,11 @@ public class CustomerProductController {
 
         return ResponseEntity.ok(productDetailDto);
     }
+    // 🔹 Nouvel endpoint pour produits similaires
+    @GetMapping("/products/similar/{categoryId}")
+    public ResponseEntity<List<ProductDto>> getSimilarProducts(@PathVariable Long categoryId) {
+        log.info("Received request to get similar products for category ID: {}", categoryId);
+        List<ProductDto> similarProducts = customerProductService.getProductsByCategory(categoryId);
+        return ResponseEntity.ok(similarProducts);
+    }
 }

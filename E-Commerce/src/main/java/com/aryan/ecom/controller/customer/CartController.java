@@ -30,9 +30,9 @@ public class CartController {
 
 	@PostMapping("/cart")
 	public ResponseEntity<?> addProductToCart(@RequestBody AddProductInCartDto addProductInCartDto) {
-		log.info("Received request to add product to cart for user with ID: {}", addProductInCartDto.getUserId());
 		return cartService.addProductToCart(addProductInCartDto);
 	}
+
 
 	@GetMapping("/cart/{userId}")
 	public ResponseEntity<?> getCartByUserId(@PathVariable Long userId) {

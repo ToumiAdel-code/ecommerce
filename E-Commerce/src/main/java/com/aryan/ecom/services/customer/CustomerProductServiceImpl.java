@@ -57,4 +57,14 @@ public class CustomerProductServiceImpl implements CustomerProductService {
 		log.error("Product with ID '{}' not found", productId);
 		return null;
 	}
+	@Override
+	public List<ProductDto> getProductsByCategory(Long categoryId) {
+		log.info("Fetching products for category ID '{}'", categoryId);
+		List<Product> products = productRepository.findAllByCategoryId(categoryId);
+		return products.stream()
+				.map(Product::getDto)
+				.collect(Collectors.toList());
+	}
+
+
 }
